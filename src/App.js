@@ -1,25 +1,40 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import { Navbar} from './components';
+import { Route,Routes,BrowserRouter,useNavigate } from 'react-router-dom';
+import { Adduser,Home } from './pages';
+import { UserData } from './data/UserData';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const[addName,setAddName]=useState('');
+  const[addAge,setAddAge]=useState('');
+
+  console.log(addName,addAge)
+
+  // const navigation = useNavigate();
+
+  function handleCreate(){
+    const data = UserData;
+    const newData = data.push({name:addName,age:addAge})
+
+
+    console.log(newData)
+
+  }
+  return<>
+  
+  <BrowserRouter>
+   <Navbar/>
+   <main>
+   <Routes>
+    <Route path='/' element={<Home/>}/>
+    <Route path='/add-user' element={<Adduser handleCreate={handleCreate} setAddAge={setAddAge}setAddName={setAddName}/>}/>
+    <Route/>
+   </Routes>
+   </main>
+   </BrowserRouter>
+
+  </>
 }
 
 export default App;
