@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-const Home = ({personData}) => {
+const Home = ({personData,handleEdit,handleDelete}) => {
   const navigation = useNavigate();
 
   function handleClick(){
@@ -32,8 +32,9 @@ const Home = ({personData}) => {
                return <tr key={index} className="text-center">
               <td className="border-2 border-gray-400 capitalize p-2">{users.name}</td>
               <td className="border-2 border-gray-400 p-2">{users.age}</td>
-              <td className="border-2 border-gray-400 capitalize p-2"><Button name='update' icons={<Pencil/>} onClick={()=>{navigation('edituser')}}  className='w-4/5 bg-blue-500 text-white flex items-center justify-center gap-2'/></td>
-              <td className="border-2 border-gray-400 capitalize p-2"><Button name='delete' icons={<Trash/>}  className='w-4/5 bg-red-500 text-white flex items-center justify-center gap-2'/></td>
+              <td className="border-2 border-gray-400 capitalize p-2"><Button name='update' icons={<Pencil/>} onClick={()=>{handleEdit(index)
+                navigation('edituser')}}  className='w-4/5 bg-blue-500 text-white flex items-center justify-center gap-2'/></td>
+              <td className="border-2 border-gray-400 capitalize p-2"><Button name='delete' icons={<Trash/>} onClick={()=>handleDelete(index)}  className='w-4/5 bg-red-500 text-white flex items-center justify-center gap-2'/></td>
             </tr>
 
               })

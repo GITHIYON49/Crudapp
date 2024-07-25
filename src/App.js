@@ -13,6 +13,7 @@ function App() {
   const navigation = useNavigate();
 
   function handleCreate() {
+    if(addName !== undefined);
     const newData = { name: addName, age: addAge };
     const data = [...personData];
     data.push(newData);
@@ -20,16 +21,33 @@ function App() {
     setPersonData(data);
     navigation("/");
   }
-  function handleEdit(){
-    console.log('edit')
+  function handleEdit(i){
+    const data = [...personData];
+    console.log(data[i])
+    // let name = data[i].name;
+    // let age = data[i].age
+    // setAddName(name)
+    // setAddAge(age)
+    
+
+    
+    navigation('edituser')
     navigation("/");
   }
+
+  function handleDelete(i){
+    const newData = [...personData];
+    newData.splice(i,1);
+    setPersonData(newData);
+
+  }
+
   return (
     <>
       <Navbar />
       <main>
         <Routes>
-          <Route path="/" element={<Home personData={personData} />} />
+          <Route path="/" element={<Home personData={personData} handleEdit={handleEdit} handleDelete={handleDelete}/>} />
           <Route
             path="/adduser"
             element={
@@ -41,7 +59,7 @@ function App() {
             }
           />
           <Route path="/edituser" element={<Edituser  setAddAge={setAddAge}
-                setAddName={setAddName} handleEdit={handleEdit}/>} />
+                setAddName={setAddName} handleEdit={handleEdit} addAge={addAge} addName={addName}/>} />
         </Routes>
       </main>
     </>
