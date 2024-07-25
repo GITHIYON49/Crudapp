@@ -1,5 +1,5 @@
 import { Input,Button } from '../../components';
-import { UserData } from '../../data/UserData';
+
 
 const Adduser = ({handleCreate,setAddAge,setAddName}) => {
 
@@ -17,4 +17,4 @@ const Adduser = ({handleCreate,setAddAge,setAddName}) => {
   </>
 }
 
-export default Adduser
+export default Adduser;
