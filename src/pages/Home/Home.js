@@ -4,16 +4,15 @@ import { Button } from "../../components";
 import { Trash } from 'lucide-react';
 import { Pencil } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { UserData } from "../../data/UserData";
 
 
 
-const Home = () => {
+const Home = ({personData}) => {
   const navigation = useNavigate();
 
   function handleClick(){
     console.log('hello')
-    navigation('/add-user')
+    navigation('/adduser')
   }
   return (
     <>
@@ -29,12 +28,12 @@ const Home = () => {
           </thead>
           <tbody>
             {
-              UserData.map((users,index)=>{
+              personData.map((users,index)=>{
                return <tr key={index} className="text-center">
               <td className="border-2 border-gray-400 capitalize p-2">{users.name}</td>
               <td className="border-2 border-gray-400 p-2">{users.age}</td>
-              <td className="border-2 border-gray-400 capitalize p-2"><Button name='update' icons={<Trash/>} className='w-4/5 bg-blue-500 text-white flex items-center justify-center gap-2'/></td>
-              <td className="border-2 border-gray-400 capitalize p-2"><Button name='delete' icons={<Pencil/>} className='w-4/5 bg-red-500 text-white flex items-center justify-center gap-2'/></td>
+              <td className="border-2 border-gray-400 capitalize p-2"><Button name='update' icons={<Pencil/>} onClick={()=>{navigation('edituser')}}  className='w-4/5 bg-blue-500 text-white flex items-center justify-center gap-2'/></td>
+              <td className="border-2 border-gray-400 capitalize p-2"><Button name='delete' icons={<Trash/>}  className='w-4/5 bg-red-500 text-white flex items-center justify-center gap-2'/></td>
             </tr>
 
               })
