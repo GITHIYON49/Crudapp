@@ -1,8 +1,8 @@
 import { useState } from "react";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
 import { Navbar } from "./components";
-import { Route, Routes, useNavigate } from "react-router-dom";
-import { Adduser, Home,Edituser } from "./pages";
+import { Adduser, Home, Edituser } from "./pages";
 import { UserData } from "./data/UserData";
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
   const navigation = useNavigate();
 
   function handleCreate() {
-    if(addName !== undefined);
+    if (addName !== undefined);
     const newData = { name: addName, age: addAge };
     const data = [...personData];
     data.push(newData);
@@ -21,25 +21,22 @@ function App() {
     setPersonData(data);
     navigation("/");
   }
-  function handleEdit(i){
+  function handleEdit(i) {
     const data = [...personData];
-    console.log(data[i])
+    console.log(data[i]);
     // let name = data[i].name;
     // let age = data[i].age
     // setAddName(name)
     // setAddAge(age)
-    
 
-    
-    navigation('edituser')
+    navigation("edituser");
     navigation("/");
   }
 
-  function handleDelete(i){
+  function handleDelete(i) {
     const newData = [...personData];
-    newData.splice(i,1);
+    newData.splice(i, 1);
     setPersonData(newData);
-
   }
 
   return (
@@ -47,7 +44,16 @@ function App() {
       <Navbar />
       <main>
         <Routes>
-          <Route path="/" element={<Home personData={personData} handleEdit={handleEdit} handleDelete={handleDelete}/>} />
+          <Route
+            path="/"
+            element={
+              <Home
+                personData={personData}
+                handleEdit={handleEdit}
+                handleDelete={handleDelete}
+              />
+            }
+          />
           <Route
             path="/adduser"
             element={
@@ -58,8 +64,12 @@ function App() {
               />
             }
           />
-          <Route path="/edituser" element={<Edituser personData={personData}
-                 handleEdit={handleEdit}/>} />
+          <Route
+            path="/edituser"
+            element={
+              <Edituser personData={personData} handleEdit={handleEdit} />
+            }
+          />
         </Routes>
       </main>
     </>

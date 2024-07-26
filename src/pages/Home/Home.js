@@ -1,49 +1,72 @@
 import React from "react";
-// import Adduser from '../Add-user/Adduser';
+import { useNavigate, Link } from "react-router-dom";
+import { Trash, Pencil } from "lucide-react";
 import { Button } from "../../components";
-import { Trash } from 'lucide-react';
-import { Pencil } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { String } from "../../data";
 
-
-
-const Home = ({personData,handleEdit,handleDelete}) => {
+const Home = ({ personData, handleEdit, handleDelete }) => {
   const navigation = useNavigate();
 
-  function handleClick(){
-    console.log('hello')
-    navigation('/adduser')
+  function handleClick() {
+    console.log("hello");
+    navigation("/adduser");
+  }
+  function setId(id, name, age) {
+    localStorage.setItem("Id", id);
+    localStorage.setItem("Name", name);
+    localStorage.setItem("Age", age);
   }
   return (
     <>
       <section className="h-[80vh] flex flex-col gap-3 items-center justify-center">
         <table className="w-3/5">
-          <thead className="text-xl" >
+          <thead className="text-xl">
             <tr>
-              <th className="border-2 border-gray-400">Name</th>
-              <th className="border-2 border-gray-400">Age</th>
-              <th className="border-2 border-gray-400">Edit</th>
-              <th className="border-2 border-gray-400">Delete</th>
+              <th className="border-2 border-gray-400">{String.headerOne}</th>
+              <th className="border-2 border-gray-400">{String.headertwo}</th>
+              <th className="border-2 border-gray-400">{String.headerThree}</th>
+              <th className="border-2 border-gray-400">{String.headerFour}</th>
             </tr>
           </thead>
           <tbody>
-            {
-              personData.map((users,index)=>{
-               return <tr key={index} className="text-center">
-              <td className="border-2 border-gray-400 capitalize p-2">{users.name}</td>
-              <td className="border-2 border-gray-400 p-2">{users.age}</td>
-              <td className="border-2 border-gray-400 capitalize p-2"><Button name='update' icons={<Pencil/>} onClick={()=>{handleEdit(index)
-                navigation('edituser')}}  className='w-4/5 bg-blue-500 text-white flex items-center justify-center gap-2'/></td>
-              <td className="border-2 border-gray-400 capitalize p-2"><Button name='delete' icons={<Trash/>} onClick={()=>handleDelete(index)}  className='w-4/5 bg-red-500 text-white flex items-center justify-center gap-2'/></td>
-            </tr>
-
-              })
-            }
-            
+            {personData.map((users, index) => {
+              return (
+                <tr key={index} className="text-center">
+                  <td className="border-2 border-gray-400 capitalize p-2">
+                    {users.name}
+                  </td>
+                  <td className="border-2 border-gray-400 p-2">{users.age}</td>
+                  <td className="border-2 border-gray-400 capitalize p-2">
+                    <Link to={"/edituser"}>
+                      <Button
+                        name={`${String.editBtn}`}
+                        icons={<Pencil />}
+                        onClick={(e) => {
+                          setId(users.id, users.name, users.age);
+                        }}
+                        className="w-4/5 bg-blue-500 text-white flex items-center justify-center gap-2"
+                      />
+                    </Link>
+                  </td>
+                  <td className="border-2 border-gray-400 capitalize p-2">
+                    <Button
+                      name={`${String.deleteBtn}`}
+                      icons={<Trash />}
+                      onClick={() => handleDelete(index)}
+                      className="w-4/5 bg-red-500 text-white flex items-center justify-center gap-2"
+                    />
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
         <div className="w-3/5">
-        <Button className={`w-full bg-yellow-400 hover:bg-yellow-300`} name={`create`} onClick={handleClick}/>
+          <Button
+            className={`w-full bg-yellow-400 hover:bg-yellow-300`}
+            name={`${String.createBtn}`}
+            onClick={handleClick}
+          />
         </div>
       </section>
     </>

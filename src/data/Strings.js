@@ -1,0 +1,15 @@
+export const String = {
+  titleName: "crud app",
+  addPageName: "Add user",
+  placeholderName: "Enter your name",
+  placeholderAge: "Enter your age",
+  addBtn: "Add",
+  editPageName: "Edit user",
+  editBtn: "Update",
+  headerOne: "Name",
+  headertwo: "Age",
+  headerThree: "Edit",
+  headerFour: "Delete",
+  deleteBtn: "delete",
+  createBtn: "create",
+};
