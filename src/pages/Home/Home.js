@@ -4,11 +4,10 @@ import { Trash, Pencil } from "lucide-react";
 import { Button } from "../../components";
 import { String } from "../../data";
 
-const Home = ({ personData, handleEdit, handleDelete }) => {
+const Home = ({ personData, handleDelete }) => {
   const navigation = useNavigate();
 
   function handleClick() {
-    console.log("hello");
     navigation("/adduser");
   }
   function setId(id, name, age) {

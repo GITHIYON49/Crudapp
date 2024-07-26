@@ -21,18 +21,7 @@ function App() {
     setPersonData(data);
     navigation("/");
   }
-  function handleEdit(i) {
-    const data = [...personData];
-    console.log(data[i]);
-    // let name = data[i].name;
-    // let age = data[i].age
-    // setAddName(name)
-    // setAddAge(age)
-
-    navigation("edituser");
-    navigation("/");
-  }
-
+  
   function handleDelete(i) {
     const newData = [...personData];
     newData.splice(i, 1);
@@ -49,7 +38,6 @@ function App() {
             element={
               <Home
                 personData={personData}
-                handleEdit={handleEdit}
                 handleDelete={handleDelete}
               />
             }
@@ -67,7 +55,7 @@ function App() {
           <Route
             path="/edituser"
             element={
-              <Edituser personData={personData} handleEdit={handleEdit} />
+              <Edituser personData={personData}/>
             }
           />
         </Routes>
