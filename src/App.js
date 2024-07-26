@@ -58,8 +58,8 @@ function App() {
               />
             }
           />
-          <Route path="/edituser" element={<Edituser  setAddAge={setAddAge}
-                setAddName={setAddName} handleEdit={handleEdit} addAge={addAge} addName={addName}/>} />
+          <Route path="/edituser" element={<Edituser personData={personData}
+                 handleEdit={handleEdit}/>} />
         </Routes>
       </main>
     </>

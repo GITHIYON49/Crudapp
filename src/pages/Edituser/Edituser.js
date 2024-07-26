@@ -1,7 +1,15 @@
-import React from 'react'
-import { Input,Button } from '../../components'
+import { useState } from 'react';
+import { Input,Button } from '../../components';
+import { useParams } from 'react-router-dom';
 
-const Edituser = ({setAddAge,setAddName,handleEdit,addAge,addName}) => {
+const Edituser = ({handleEdit,personData}) => {
+  
+  const paramas = useParams();
+  console.log(personData[paramas].name)
+  const [addName, setAddName] = useState();
+  const [addAge, setAddAge] = useState();
+  // const [addName, setAddName] = useState(personData[paramas].name);
+  // const [addAge, setAddAge] = useState(personData[paramas].age);
   return <>
   <div className='w-full flex flex-col items-center justify-center'>
   <h2 className='text-gray-400 text-xl capitalize font-bold'>Edit user</h2>
