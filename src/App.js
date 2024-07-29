@@ -7,21 +7,22 @@ import { UserData } from "./data/UserData";
 
 function App() {
   const [personData, setPersonData] = useState(UserData);
-  const [addName, setAddName] = useState("");
-  const [addAge, setAddAge] = useState("");
+  const [name, setName] = useState("");
+  const [age, setAge] = useState("");
 
   const navigation = useNavigate();
 
+  const ids = personData.length + 1;
+
   function handleCreate() {
-    if (addName !== undefined);
-    const newData = { name: addName, age: addAge };
+    if (name !== undefined);
+    const newData = { name: name, age: age, id: ids };
     const data = [...personData];
     data.push(newData);
-    console.log(data);
     setPersonData(data);
     navigation("/");
   }
-  
+
   function handleDelete(i) {
     const newData = [...personData];
     newData.splice(i, 1);
@@ -36,10 +37,7 @@ function App() {
           <Route
             path="/"
             element={
-              <Home
-                personData={personData}
-                handleDelete={handleDelete}
-              />
+              <Home personData={personData} handleDelete={handleDelete} />
             }
           />
           <Route
@@ -47,16 +45,14 @@ function App() {
             element={
               <Adduser
                 handleCreate={handleCreate}
-                setAddAge={setAddAge}
-                setAddName={setAddName}
+                setAge={setAge}
+                setName={setName}
               />
             }
           />
           <Route
             path="/edituser"
-            element={
-              <Edituser personData={personData}/>
-            }
+            element={<Edituser personData={personData} />}
           />
         </Routes>
       </main>

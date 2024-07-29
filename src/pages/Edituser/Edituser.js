@@ -8,22 +8,17 @@ const Edituser = ({ personData }) => {
 
   const [name, setName] = useState(" ");
   const [age, setAge] = useState(" ");
-  const [id, setId] = useState(" ");
-
-  useEffect(() => {
-    setName(localStorage.getItem("Name"));
-    setAge(localStorage.getItem("Age"));
-    setId(localStorage.getItem("Id"));
-  }, []);
+  const [id, setId] = useState("");
 
   let index = personData
     .map(function (e) {
       return e.id;
     })
-    .indexOf(id);
+    .indexOf(+id);
 
   function handleSubmit(e) {
     e.preventDefault();
+
     if (name === "" || age === "") {
       return;
     }
@@ -35,11 +30,19 @@ const Edituser = ({ personData }) => {
 
     navigate("/");
   }
+
+  useEffect(() => {
+    setAge(localStorage.getItem("Age"));
+    setId(localStorage.getItem("Id"));
+    setName(localStorage.getItem("Name"));
+  }, []);
+
+  const { editBtn, editPageName, placeholderName, placeholderAge } = String;
   return (
     <>
       <div className="w-full flex flex-col items-center justify-center">
         <h2 className="text-gray-400 text-xl capitalize font-bold">
-          {String.editPageName}
+          {editPageName}
         </h2>
         <div className="w-3/5 flex flex-col gap-4 border-2 p-4">
           <Input
@@ -48,7 +51,7 @@ const Edituser = ({ personData }) => {
             onChange={(e) => {
               setName(e.target.value);
             }}
-            placeholder={`${String.placeholderName}`}
+            placeholder={`${placeholderName}`}
           />
           <Input
             type="text"
@@ -56,10 +59,10 @@ const Edituser = ({ personData }) => {
             onChange={(e) => {
               setAge(e.target.value);
             }}
-            placeholder={`${String.placeholderAge}`}
+            placeholder={`${placeholderAge}`}
           />
           <Button
-            name={`${String.editBtn}`}
+            name={`${editBtn}`}
             className={`w-full bg-yellow-400  hover:bg-yellow-300`}
             onClick={(e) => handleSubmit(e)}
           />

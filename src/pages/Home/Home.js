@@ -7,6 +7,16 @@ import { String } from "../../data";
 const Home = ({ personData, handleDelete }) => {
   const navigation = useNavigate();
 
+  const {
+    headerOne,
+    headertwo,
+    headerThree,
+    headerFour,
+    editBtn,
+    deleteBtn,
+    createBtn,
+  } = String;
+
   function handleClick() {
     navigation("/adduser");
   }
@@ -21,10 +31,10 @@ const Home = ({ personData, handleDelete }) => {
         <table className="w-3/5">
           <thead className="text-xl">
             <tr>
-              <th className="border-2 border-gray-400">{String.headerOne}</th>
-              <th className="border-2 border-gray-400">{String.headertwo}</th>
-              <th className="border-2 border-gray-400">{String.headerThree}</th>
-              <th className="border-2 border-gray-400">{String.headerFour}</th>
+              <th className="border-2 border-gray-400">{headerOne}</th>
+              <th className="border-2 border-gray-400">{headertwo}</th>
+              <th className="border-2 border-gray-400">{headerThree}</th>
+              <th className="border-2 border-gray-400">{headerFour}</th>
             </tr>
           </thead>
           <tbody>
@@ -38,7 +48,7 @@ const Home = ({ personData, handleDelete }) => {
                   <td className="border-2 border-gray-400 capitalize p-2">
                     <Link to={"/edituser"}>
                       <Button
-                        name={`${String.editBtn}`}
+                        name={`${editBtn}`}
                         icons={<Pencil />}
                         onClick={(e) => {
                           setId(users.id, users.name, users.age);
@@ -49,7 +59,7 @@ const Home = ({ personData, handleDelete }) => {
                   </td>
                   <td className="border-2 border-gray-400 capitalize p-2">
                     <Button
-                      name={`${String.deleteBtn}`}
+                      name={`${deleteBtn}`}
                       icons={<Trash />}
                       onClick={() => handleDelete(index)}
                       className="w-4/5 bg-red-500 text-white flex items-center justify-center gap-2"
@@ -63,7 +73,7 @@ const Home = ({ personData, handleDelete }) => {
         <div className="w-3/5">
           <Button
             className={`w-full bg-yellow-400 hover:bg-yellow-300`}
-            name={`${String.createBtn}`}
+            name={`${createBtn}`}
             onClick={handleClick}
           />
         </div>
