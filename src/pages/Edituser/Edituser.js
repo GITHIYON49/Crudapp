@@ -1,17 +1,18 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Input, Button } from "../../components";
 import { String } from "../../data";
+import { ListContex } from "../../App";
 
-const Edituser = ({ personData }) => {
+const Edituser = () => {
   const navigate = useNavigate();
 
-  const [name, setName] = useState(" ");
-  const [age, setAge] = useState(" ");
+  const { name, age, setAge, setName, personData } = useContext(ListContex);
+
   const [id, setId] = useState("");
 
   let index = personData
-    .map(function (e) {
+    ?.map(function (e) {
       return e.id;
     })
     .indexOf(+id);
@@ -35,7 +36,7 @@ const Edituser = ({ personData }) => {
     setAge(localStorage.getItem("Age"));
     setId(localStorage.getItem("Id"));
     setName(localStorage.getItem("Name"));
-  }, []);
+  }, [setAge, setName]);
 
   const { editBtn, editPageName, placeholderName, placeholderAge } = String;
   return (

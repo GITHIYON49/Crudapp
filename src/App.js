@@ -1,60 +1,30 @@
-import { useState } from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+import { createContext, useState } from "react";
 import "./App.css";
 import { Navbar } from "./components";
-import { Adduser, Home, Edituser } from "./pages";
-import { UserData } from "./data/UserData";
+import { Routs } from "./data";
+import { UserData } from "./data";
+
+export const ListContex = createContext();
 
 function App() {
   const [personData, setPersonData] = useState(UserData);
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
 
-  const navigation = useNavigate();
-
-  const ids = personData.length + 1;
-
-  function handleCreate() {
-    if (name !== undefined);
-    const newData = { name: name, age: age, id: ids };
-    const data = [...personData];
-    data.push(newData);
-    setPersonData(data);
-    navigation("/");
-  }
-
-  function handleDelete(i) {
-    const newData = [...personData];
-    newData.splice(i, 1);
-    setPersonData(newData);
-  }
-
   return (
     <>
       <Navbar />
       <main>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Home personData={personData} handleDelete={handleDelete} />
-            }
-          />
-          <Route
-            path="/adduser"
-            element={
-              <Adduser
-                handleCreate={handleCreate}
-                setAge={setAge}
-                setName={setName}
-              />
-            }
-          />
-          <Route
-            path="/edituser"
-            element={<Edituser personData={personData} />}
-          />
-        </Routes>
+        <ListContex.Provider
+          value={{ personData, setPersonData, name, setName, age, setAge }}
+        >
+          <Routes>
+            {Routs?.map((rout, i) => {
+              return <Route key={i} path={rout.path} element={rout.element} />;
+            })}
+          </Routes>
+        </ListContex.Provider>
       </main>
     </>
   );

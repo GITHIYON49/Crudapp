@@ -1,8 +1,26 @@
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { ListContex } from "../../App";
 import { Input, Button } from "../../components";
 import { String } from "../../data";
 
-const Adduser = ({ handleCreate, setAge, setName }) => {
+const Adduser = () => {
   const { addPageName, placeholderName, placeholderAge, addBtn } = String;
+  const { personData, setAge, setName, setPersonData, name, age } =
+    useContext(ListContex);
+
+  const navigation = useNavigate();
+
+  const ids = personData.length + 1;
+
+  function handleCreate() {
+    if (name !== undefined);
+    const newData = { name: name, age: age, id: ids };
+    const data = [...personData];
+    data.push(newData);
+    setPersonData(data);
+    navigation("/");
+  }
   return (
     <>
       <div className="w-full flex flex-col items-center justify-center">
