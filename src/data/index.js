@@ -1,5 +1,5 @@
 import { String } from "./Strings";
 import { UserData } from "./UserData";
-import { Routs } from "./Routes";
+import { Path } from "./Path";
 
-export { String, UserData ,Routs};
+export { String, UserData ,Path};

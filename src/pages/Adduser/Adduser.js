@@ -29,7 +29,6 @@ const Adduser = () => {
         </h2>
         <div className="w-3/5 flex flex-col gap-4 border-2 p-4">
           <Input
-            type="text"
             onChange={(e) => {
               setName(e.target.value);
             }}

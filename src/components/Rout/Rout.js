@@ -1,6 +1,6 @@
-import { Path } from "./Path";
-import { Home, Edituser, Adduser } from "../pages";
-export const Routs= [
+import { Path } from "../../data";
+import { Home, Edituser, Adduser } from "../../pages";
+export const Routs = [
   {
     path: Path.home,
     element: <Home />,

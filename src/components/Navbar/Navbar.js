@@ -2,7 +2,7 @@ import React from "react";
 import { String } from "../../data";
 
 const Navbar = () => {
-  const {titleName} = String;
+  const { titleName } = String;
   return (
     <>
       <header>

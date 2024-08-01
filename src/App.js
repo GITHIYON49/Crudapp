@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { createContext, useState } from "react";
 import "./App.css";
 import { Navbar } from "./components";
-import { Routs } from "./data";
+import { Routs } from "./components";
 import { UserData } from "./data";
 
 export const ListContex = createContext();
